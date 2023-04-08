@@ -40,8 +40,6 @@ public class clientThread extends Thread{
 
     Date dateNow = new Date();
 
-    LocalDateTime date = null;
-    Time time = null;
     LocalDate currentDate;
 
     SimpleDateFormat formatForDateNow = new SimpleDateFormat("hh:mm:ss");
@@ -141,6 +139,7 @@ public class clientThread extends Thread{
           }
         }
       }
+      chatMessageDAO.downloadHistory(this.clientSocket, name);
       synchronized (this) {
         for (int i = 0; i < maxClientsCount; i++) {
           if (threads[i] != null && threads[i] != this
@@ -150,6 +149,7 @@ public class clientThread extends Thread{
           }
         }
       }
+
       os.println("*** Bye " + name + " ***");
 
       /*
